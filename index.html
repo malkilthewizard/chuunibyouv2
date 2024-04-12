@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chuuni Text Generator</title>
+  <style>
+    body {
+        background-image: url(bg.png);
+      color: black;
+      font-family: monospace;
+      font-size: small;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    #quote-container {
+      text-align: center;
+    }
+    button {
+        margin-top: 20px;
+    }
+    footer {
+      position: fixed;
+      bottom: 0%;
+      font-size: small;
+
+    }
+    
+  </style>
+</head>
+<body>
+  <div id="quote-container">
+    <div id="quote"></div>
+    <button onclick="generateChuuniText()">Generate New Quote</button>
+  </div>
+  <footer>&copy; Malkil</footer>
+
+  <script>
+    const edgyQuotes = [
+      "In the depths of darkness, I find my true power.",
+      "My scars are my strength, each one a testament to my endurance.",
+      "The shadows whisper secrets only the brave dare to hear.",
+      "Blood stains the path to victory, and I walk it without fear.",
+      "In a world of lies, I am the truth incarnate.",
+      "Chaos follows in my wake, for I am its master.",
+      "Through pain, I forge my destiny.",
+      "The flames of my fury consume all who oppose me.",
+      "My heart beats with the rhythm of war, relentless and unforgiving.",
+      "From the abyss I rise, a phoenix reborn in fire."
+    ];
+
+    const heroicQuotes = [
+      "With courage as my sword and honor as my shield, I charge into battle.",
+      "In the face of darkness, I am the beacon of hope.",
+      "For justice, I would defy even the gods.",
+      "My resolve is unbreakable, my spirit indomitable.",
+      "I am the hero this world needs, even if it doesn't deserve me.",
+      "Through sacrifice, I pave the path to a brighter future.",
+      "I fight not for glory, but for the greater good.",
+      "My name will echo through the ages, a legend written in blood.",
+      "Where others falter, I stand tall, unwavering.",
+      "In the heart of adversity, I find my strength."
+    ];
+
+    const confidentQuotes = [
+      "I fear nothing, for I am the master of my fate.",
+      "In a game of gods, I hold the winning hand.",
+      "The world bends to my will, for I am its rightful ruler.",
+      "With every step, I carve my destiny into the fabric of reality.",
+      "My presence alone strikes fear into the hearts of my enemies.",
+      "Even fate itself bows before my unyielding resolve.",
+      "There is no challenge I cannot overcome, no obstacle I cannot conquer.",
+      "I walk the line between madness and genius, for I am both.",
+      "In the theater of life, I am the playwright and the protagonist.",
+      "To doubt me is to court death."
+    ];
+
+    const abstractQuotes = [
+      "My thoughts are stars I cannot fathom into constellations.",
+      "Reality is but a canvas, and I am the artist.",
+      "The universe is a puzzle, and I hold its final piece.",
+      "Within the chaos of existence lies the beauty of creation.",
+      "Time is a river, and I am its master, shaping its course.",
+      "The boundaries of perception are but shackles on the mind.",
+      "In the silence of eternity, I find solace.",
+      "The universe whispers its secrets to those who dare to listen.",
+      "I am the embodiment of paradox, a contradiction made flesh.",
+      "Existence is but a dream, and I am its dreamer."
+    ];
+
+    const extraAbstractQuotes = [
+      "[Infinite possibilities, one reality.]",
+      "[The void whispers, I listen.]",
+      "[Echoes of time, I understand.]",
+      "[Beyond words, truth resonates.]",
+      "[Fractured reflections, I see.]",
+      "[Silent symphony, I conduct.]",
+      "[Chaos harmonized, I balance.]",
+      "[Ephemeral dreams, eternal truths.]",
+      "[Quantum dance, I lead.]",
+      "[Unseen threads, I weave.]"
+    ];
+
+    function generateChuuniText() {
+      const randomEdgy = edgyQuotes[Math.floor(Math.random() * edgyQuotes.length)];
+      const randomHeroic = heroicQuotes[Math.floor(Math.random() * heroicQuotes.length)];
+      const randomConfident = confidentQuotes[Math.floor(Math.random() * confidentQuotes.length)];
+      const randomExtraAbstract = extraAbstractQuotes[Math.floor(Math.random() * extraAbstractQuotes.length)];
+      const randomAbstract = abstractQuotes[Math.floor(Math.random() * abstractQuotes.length)];
+
+      const parts = [
+        randomEdgy,
+        randomHeroic,
+        randomExtraAbstract,
+        randomConfident,
+        randomAbstract
+      ];
+
+      const mixedQuotes = mixQuotes(parts);
+
+      const chuuniText = mixedQuotes.join(' ').replace(/ ([^\s,]+)/g, (match, p1) => Math.random() > 0.5 ? ` ${p1.toUpperCase()}` : ` ${p1}`);
+
+      // Randomly choose two words to capitalize
+      const words = chuuniText.split(' ');
+      const capitalizedIndices = [];
+      while (capitalizedIndices.length < 2) {
+        const index = Math.floor(Math.random() * words.length);
+        if (!capitalizedIndices.includes(index)) {
+          words[index] = words[index].toUpperCase();
+          capitalizedIndices.push(index);
+        }
+      }
+      const finalText = words.join(' ');
+
+      document.getElementById('quote').innerText = finalText;
+    }
+
+    function mixQuotes(quotes) {
+      const mixedQuotes = [];
+      for (let i = 0; i < quotes.length; i++) {
+        mixedQuotes.push(quotes[i]);
+      }
+      return mixedQuotes;
+    }
+
+    generateChuuniText();
+  </script>
+</body>
+</html>
